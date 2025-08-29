@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Music, Code, MapPin, Briefcase, Plane, Calendar, Star, Heart, Zap, Globe, Award, Rocket } from "lucide-react";
+import GlobalJourneySection from "./GlobalJourneySection";
 
 interface JourneyEvent {
   id: string;
@@ -100,17 +101,21 @@ const journeyData: JourneyEvent[] = [
   {
     id: "global-journey",
     year: 2024,
-    title: "Jornada Global",
-    description: "10 países, infinitas lições.",
-    details: "A flexibilidade do trabalho remoto me permitiu explorar o mundo. Brasil, Portugal, França, Holanda, Alemanha, República Tcheca, Áustria, Itália, Argentina - cada país uma lição de vida.",
+    title: "Jornada Global - O Core da Transformação",
+    description: "10 países, infinitas lições, transformação completa.",
+    details: "A flexibilidade do trabalho remoto me permitiu uma experiência única: trabalhar enquanto explorava culturas, mentalidades e formas de viver completamente diferentes. Cada país trouxe uma lição única, moldando não apenas minhas skills técnicas, mas principalmente minha visão de mundo e capacidade de adaptação.",
     category: "travel",
     icon: <Globe className="w-6 h-6" />,
     location: "Brasil → Portugal → França → Holanda → Alemanha → Rep. Tcheca → Áustria → Itália → Argentina",
-    skills: ["Time Management", "Cultural Intelligence", "Adaptabilidade", "Remote Leadership", "Global Mindset"],
-    achievement: "10 países, 50+ projetos desenvolvidos",
+    skills: [
+      "Remote Leadership", "Cultural Intelligence", "Global Mindset", "Cross-timezone Management", 
+      "Multilingual Communication", "Agile Adaptation", "International Business", "Geo-distributed Teams",
+      "European Work Culture", "Latin Mindset Integration", "Digital Nomad Workflow", "Global Networking"
+    ],
+    achievement: "10 países, 50+ projetos, 15+ culturas experienciadas",
     interactive: {
-      type: "hover",
-      action: "Passe o mouse para ver fotos da jornada!"
+      type: "click",
+      action: "Explore cada país da jornada!"
     }
   }
 ];
@@ -149,7 +154,7 @@ const ScrollJourneyMap = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleInteraction = (eventId: string, type: string) => {
+  const handleInteraction = (eventId: string) => {
     setActiveInteraction(eventId);
     setTimeout(() => setActiveInteraction(null), 3000);
   };
@@ -218,139 +223,148 @@ const ScrollJourneyMap = () => {
           ref={(el) => {
             if (el) sectionRefs.current.set(event.id, el as HTMLDivElement);
           }}
-          className="min-h-screen flex items-center py-20 relative"
+          className={`${event.id === 'global-journey' ? 'min-h-auto py-20' : 'min-h-screen'} flex items-center py-20 relative`}
           style={getParallaxStyle(index)}
         >
           <div className="container mx-auto px-4 pl-20">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              {/* Content Side */}
-              <div 
-                className={`space-y-6 ${
-                  visibleSections.has(event.id) ? 'animate-slide-in-left' : 'opacity-0'
-                } ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className={`p-4 rounded-full bg-${categoryColors[event.category]}/20 ${
-                    activeInteraction === event.id ? 'animate-pulse-glow' : ''
-                  }`}>
-                    {event.icon}
+            {/* Special Global Journey Section */}
+            {event.id === 'global-journey' ? (
+              <GlobalJourneySection 
+                isVisible={visibleSections.has(event.id)}
+                activeInteraction={activeInteraction}
+                onInteraction={handleInteraction}
+              />
+            ) : (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                {/* Content Side */}
+                <div 
+                  className={`space-y-6 ${
+                    visibleSections.has(event.id) ? 'animate-slide-in-left' : 'opacity-0'
+                  } ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}
+                >
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className={`p-4 rounded-full bg-${categoryColors[event.category]}/20 ${
+                      activeInteraction === event.id ? 'animate-pulse-glow' : ''
+                    }`}>
+                      {event.icon}
+                    </div>
+                    <div>
+                      <Badge className={`bg-${categoryColors[event.category]}/20 text-${categoryColors[event.category]} border-${categoryColors[event.category]}/30 mb-2`}>
+                        {event.year}
+                      </Badge>
+                      <h2 className="text-4xl font-bold">{event.title}</h2>
+                    </div>
                   </div>
-                  <div>
-                    <Badge className={`bg-${categoryColors[event.category]}/20 text-${categoryColors[event.category]} border-${categoryColors[event.category]}/30 mb-2`}>
-                      {event.year}
-                    </Badge>
-                    <h2 className="text-4xl font-bold">{event.title}</h2>
-                  </div>
+
+                  <p className="text-xl text-muted-foreground">{event.description}</p>
+                  
+                  <p className="text-foreground leading-relaxed">{event.details}</p>
+
+                  {event.location && (
+                    <div className="flex items-start gap-2 p-4 bg-card/50 rounded-lg border">
+                      <MapPin className="w-5 h-5 text-journey-travel mt-1 flex-shrink-0" />
+                      <span className="text-sm">{event.location}</span>
+                    </div>
+                  )}
+
+                  {event.achievement && (
+                    <div className="flex items-center gap-2 p-4 bg-gradient-primary/10 rounded-lg border border-primary/20">
+                      <Award className="w-5 h-5 text-primary" />
+                      <span className="font-medium">{event.achievement}</span>
+                    </div>
+                  )}
+
+                  {event.skills && (
+                    <div>
+                      <h4 className="font-semibold mb-3 flex items-center gap-2">
+                        <Zap className="w-4 h-4" />
+                        Skills Desenvolvidas:
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {event.skills.map((skill, skillIndex) => (
+                          <Badge 
+                            key={skill} 
+                            variant="outline" 
+                            className={`transition-all duration-300 hover:scale-105 ${
+                              visibleSections.has(event.id) ? 'animate-slide-in-up' : ''
+                            }`}
+                            style={{ animationDelay: `${skillIndex * 0.1}s` }}
+                          >
+                            {skill}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {event.interactive && (
+                    <Button
+                      className={`mt-6 ${
+                        activeInteraction === event.id ? 'animate-glow-pulse' : ''
+                      }`}
+                      onClick={() => handleInteraction(event.id)}
+                      onMouseEnter={() => event.interactive?.type === 'hover' && handleInteraction(event.id)}
+                    >
+                      <Heart className="w-4 h-4 mr-2" />
+                      {event.interactive.action}
+                    </Button>
+                  )}
                 </div>
 
-                <p className="text-xl text-muted-foreground">{event.description}</p>
-                
-                <p className="text-foreground leading-relaxed">{event.details}</p>
-
-                {event.location && (
-                  <div className="flex items-start gap-2 p-4 bg-card/50 rounded-lg border">
-                    <MapPin className="w-5 h-5 text-journey-travel mt-1 flex-shrink-0" />
-                    <span className="text-sm">{event.location}</span>
-                  </div>
-                )}
-
-                {event.achievement && (
-                  <div className="flex items-center gap-2 p-4 bg-gradient-primary/10 rounded-lg border border-primary/20">
-                    <Award className="w-5 h-5 text-primary" />
-                    <span className="font-medium">{event.achievement}</span>
-                  </div>
-                )}
-
-                {event.skills && (
-                  <div>
-                    <h4 className="font-semibold mb-3 flex items-center gap-2">
-                      <Zap className="w-4 h-4" />
-                      Skills Desenvolvidas:
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {event.skills.map((skill, skillIndex) => (
-                        <Badge 
-                          key={skill} 
-                          variant="outline" 
-                          className={`transition-all duration-300 hover:scale-105 ${
-                            visibleSections.has(event.id) ? 'animate-slide-in-up' : ''
-                          }`}
-                          style={{ animationDelay: `${skillIndex * 0.1}s` }}
-                        >
-                          {skill}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {event.interactive && (
-                  <Button
-                    className={`mt-6 ${
-                      activeInteraction === event.id ? 'animate-glow-pulse' : ''
-                    }`}
-                    onClick={() => handleInteraction(event.id, event.interactive!.type)}
-                    onMouseEnter={() => event.interactive?.type === 'hover' && handleInteraction(event.id, 'hover')}
-                  >
-                    <Heart className="w-4 h-4 mr-2" />
-                    {event.interactive.action}
-                  </Button>
-                )}
-              </div>
-
-              {/* Interactive Visual Side */}
-              <div 
-                className={`relative ${
-                  visibleSections.has(event.id) ? 'animate-slide-in-right' : 'opacity-0'
-                } ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}
-              >
-                <Card className={`p-8 bg-gradient-to-br from-${categoryColors[event.category]}/10 to-${categoryColors[event.category]}/5 border-${categoryColors[event.category]}/20 relative overflow-hidden group cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-2xl`}>
-                  {/* Background Pattern */}
-                  <div className="absolute inset-0 opacity-5">
-                    <div className="w-full h-full bg-gradient-radial from-transparent via-current to-transparent" />
-                  </div>
-                  
-                  {/* Large Year Display */}
-                  <div className="text-center relative z-10">
-                    <div className={`text-8xl font-black text-${categoryColors[event.category]}/30 mb-4 group-hover:text-${categoryColors[event.category]}/50 transition-colors duration-300`}>
-                      {event.year}
+                {/* Interactive Visual Side */}
+                <div 
+                  className={`relative ${
+                    visibleSections.has(event.id) ? 'animate-slide-in-right' : 'opacity-0'
+                  } ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}
+                >
+                  <Card className={`p-8 bg-gradient-to-br from-${categoryColors[event.category]}/10 to-${categoryColors[event.category]}/5 border-${categoryColors[event.category]}/20 relative overflow-hidden group cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-2xl`}>
+                    {/* Background Pattern */}
+                    <div className="absolute inset-0 opacity-5">
+                      <div className="w-full h-full bg-gradient-radial from-transparent via-current to-transparent" />
                     </div>
                     
-                    {/* Interactive Element */}
-                    <div className={`w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-${categoryColors[event.category]} to-${categoryColors[event.category]}/60 flex items-center justify-center group-hover:animate-pulse-glow transition-all duration-300 ${
-                      activeInteraction === event.id ? 'animate-bounce-gentle' : ''
-                    }`}>
-                      <div className="text-4xl">
-                        {event.icon}
+                    {/* Large Year Display */}
+                    <div className="text-center relative z-10">
+                      <div className={`text-8xl font-black text-${categoryColors[event.category]}/30 mb-4 group-hover:text-${categoryColors[event.category]}/50 transition-colors duration-300`}>
+                        {event.year}
                       </div>
+                      
+                      {/* Interactive Element */}
+                      <div className={`w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-${categoryColors[event.category]} to-${categoryColors[event.category]}/60 flex items-center justify-center group-hover:animate-pulse-glow transition-all duration-300 ${
+                        activeInteraction === event.id ? 'animate-bounce-gentle' : ''
+                      }`}>
+                        <div className="text-4xl">
+                          {event.icon}
+                        </div>
+                      </div>
+
+                      {activeInteraction === event.id && (
+                        <div className="mt-4 animate-slide-in-up">
+                          <Badge className="bg-primary/20 text-primary border-primary/30">
+                            ✨ Interação ativada!
+                          </Badge>
+                        </div>
+                      )}
                     </div>
 
-                    {activeInteraction === event.id && (
-                      <div className="mt-4 animate-slide-in-up">
-                        <Badge className="bg-primary/20 text-primary border-primary/30">
-                          ✨ Interação ativada!
-                        </Badge>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Decorative Elements */}
-                  <div className="absolute top-4 right-4 opacity-20 group-hover:opacity-40 transition-opacity">
-                    <Calendar className="w-6 h-6" />
-                  </div>
-                  <div className="absolute bottom-4 left-4 opacity-20 group-hover:opacity-40 transition-opacity">
-                    <Badge variant="outline" className="text-xs">
-                      {event.category}
-                    </Badge>
-                  </div>
-                </Card>
+                    {/* Decorative Elements */}
+                    <div className="absolute top-4 right-4 opacity-20 group-hover:opacity-40 transition-opacity">
+                      <Calendar className="w-6 h-6" />
+                    </div>
+                    <div className="absolute bottom-4 left-4 opacity-20 group-hover:opacity-40 transition-opacity">
+                      <Badge variant="outline" className="text-xs">
+                        {event.category}
+                      </Badge>
+                    </div>
+                  </Card>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </section>
       ))}
 
-      {/* Final Section */}
+      {/* Enhanced Final Section */}
       <section className="min-h-screen flex items-center justify-center bg-gradient-background relative">
         <div className="text-center z-10 px-4">
           <h2 className="text-4xl md:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-6">
@@ -358,11 +372,14 @@ const ScrollJourneyMap = () => {
           </h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Cada passo foi uma lição, cada desafio uma oportunidade de crescimento. 
-            O futuro reserva ainda mais descobertas.
+            A jornada global especialmente moldou uma visão de mundo única.
           </p>
-          <div className="flex gap-4 justify-center">
+          <div className="flex flex-wrap gap-4 justify-center">
             <Badge variant="outline" className="text-lg px-4 py-2">
               {journeyData.length} marcos alcançados
+            </Badge>
+            <Badge className="text-lg px-4 py-2 bg-journey-travel/20 text-journey-travel border-journey-travel/30">
+              10 países explorados
             </Badge>
             <Badge variant="outline" className="text-lg px-4 py-2">
               ∞ possibilidades à frente
