@@ -1,7 +1,7 @@
-import JourneyMap from "@/components/JourneyMap";
+import ScrollJourneyMap from "@/components/ScrollJourneyMap";
 
 const Index = () => {
-  return <JourneyMap />;
+  return <ScrollJourneyMap />;
 };
 
 export default Index;
