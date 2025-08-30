@@ -55,8 +55,40 @@ const translations = {
     'journey.globalJourney.title': 'Jornada Global - O Core da Transformação',
     'journey.globalJourney.description': '10 países, infinitas lições, transformação completa.',
     'journey.globalJourney.details': 'A flexibilidade do trabalho remoto me permitiu uma experiência única: trabalhar enquanto explorava culturas, mentalidades e formas de viver completamente diferentes. Cada país trouxe uma lição única, moldando não apenas minhas skills técnicas, mas principalmente minha visão de mundo e capacidade de adaptação.',
+    'journey.globalJourney.location': 'Brasil → Portugal → França → Holanda → Alemanha → Rep. Tcheca → Áustria → Itália → Argentina',
     'journey.globalJourney.achievement': '10 países, 50+ projetos, 15+ culturas experienciadas',
     'journey.globalJourney.interactive': 'Explore cada país da jornada!',
+    
+    // Skills
+    'skills.creativity': 'Criatividade',
+    'skills.discipline': 'Disciplina',
+    'skills.artistic': 'Expressão artística',
+    'skills.dedication': 'Dedicação',
+    'skills.performance': 'Performance',
+    'skills.production': 'Produção musical',
+    'skills.networking': 'Networking',
+    'skills.business': 'Business musical',
+    'skills.problemSolving': 'Problem Solving',
+    'skills.selfLearning': 'Autodidatismo',
+    'skills.erpSystems': 'ERP Systems',
+    'skills.frontend': 'Frontend',
+    'skills.customerSuccess': 'Customer Success',
+    'skills.productMindset': 'Product Mindset',
+    'skills.mentoring': 'Mentoria',
+    'skills.architecture': 'Arquitetura',
+    'skills.technicalLeadership': 'Technical Leadership',
+    'skills.remoteLeadership': 'Remote Leadership',
+    'skills.culturalIntelligence': 'Cultural Intelligence',
+    'skills.globalMindset': 'Global Mindset',
+    'skills.timezoneManagement': 'Cross-timezone Management',
+    'skills.multilingualComm': 'Multilingual Communication',
+    'skills.agileAdaptation': 'Agile Adaptation',
+    'skills.internationalBusiness': 'International Business',
+    'skills.distributedTeams': 'Geo-distributed Teams',
+    'skills.europeanWorkCulture': 'European Work Culture',
+    'skills.latinMindset': 'Latin Mindset Integration',
+    'skills.digitalNomadWorkflow': 'Digital Nomad Workflow',
+    'skills.globalNetworking': 'Global Networking',
     
     // Global Journey Section
     'global.title': '🌍 Jornada Global 2024',
@@ -73,7 +105,7 @@ const translations = {
     'global.highlights': 'Principais Highlights',
     'global.skills': 'Skills Específicas',
     
-    // Skills
+    // Common
     'skills.developed': 'Skills Desenvolvidas:',
     'skills.interaction': '✨ Interação ativada!',
     
@@ -130,8 +162,40 @@ const translations = {
     'journey.globalJourney.title': 'Global Journey - The Core of Transformation',
     'journey.globalJourney.description': '10 countries, infinite lessons, complete transformation.',
     'journey.globalJourney.details': 'Remote work flexibility allowed me a unique experience: working while exploring completely different cultures, mindsets and ways of living. Each country brought a unique lesson, shaping not only my technical skills, but mainly my worldview and adaptability.',
+    'journey.globalJourney.location': 'Brazil → Portugal → France → Netherlands → Germany → Czech Rep. → Austria → Italy → Argentina',
     'journey.globalJourney.achievement': '10 countries, 50+ projects, 15+ cultures experienced',
     'journey.globalJourney.interactive': 'Explore each country of the journey!',
+    
+    // Skills
+    'skills.creativity': 'Creativity',
+    'skills.discipline': 'Discipline',
+    'skills.artistic': 'Artistic Expression',
+    'skills.dedication': 'Dedication',
+    'skills.performance': 'Performance',
+    'skills.production': 'Music Production',
+    'skills.networking': 'Networking',
+    'skills.business': 'Music Business',
+    'skills.problemSolving': 'Problem Solving',
+    'skills.selfLearning': 'Self-Learning',
+    'skills.erpSystems': 'ERP Systems',
+    'skills.frontend': 'Frontend',
+    'skills.customerSuccess': 'Customer Success',
+    'skills.productMindset': 'Product Mindset',
+    'skills.mentoring': 'Mentoring',
+    'skills.architecture': 'Architecture',
+    'skills.technicalLeadership': 'Technical Leadership',
+    'skills.remoteLeadership': 'Remote Leadership',
+    'skills.culturalIntelligence': 'Cultural Intelligence',
+    'skills.globalMindset': 'Global Mindset',
+    'skills.timezoneManagement': 'Cross-timezone Management',
+    'skills.multilingualComm': 'Multilingual Communication',
+    'skills.agileAdaptation': 'Agile Adaptation',
+    'skills.internationalBusiness': 'International Business',
+    'skills.distributedTeams': 'Geo-distributed Teams',
+    'skills.europeanWorkCulture': 'European Work Culture',
+    'skills.latinMindset': 'Latin Mindset Integration',
+    'skills.digitalNomadWorkflow': 'Digital Nomad Workflow',
+    'skills.globalNetworking': 'Global Networking',
     
     // Global Journey Section
     'global.title': '🌍 Global Journey 2024',
@@ -148,7 +212,7 @@ const translations = {
     'global.highlights': 'Main Highlights',
     'global.skills': 'Specific Skills',
     
-    // Skills
+    // Common
     'skills.developed': 'Skills Developed:',
     'skills.interaction': '✨ Interaction activated!',
     

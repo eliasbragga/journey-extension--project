@@ -23,106 +23,106 @@ interface JourneyEvent {
   };
 }
 
-const journeyData: JourneyEvent[] = [
-  {
-    id: "music-start",
-    year: 2007,
-    title: "Primeiros Acordes",
-    description: "O início de uma paixão que duraria para sempre.",
-    details: "Aos primeiros toques no instrumento, descobri um mundo de possibilidades. A música se tornou minha linguagem universal, ensinando disciplina, criatividade e expressão.",
-    category: "music",
-    icon: <Music className="w-6 h-6" />,
-    skills: ["Criatividade", "Disciplina", "Expressão artística", "Dedicação"],
-    achievement: "Primeiros acordes dominados",
-    interactive: {
-      type: "click",
-      action: "Toque para ouvir os primeiros acordes!"
-    }
-  },
-  {
-    id: "music-professional",
-    year: 2015,
-    title: "Música Profissional",
-    description: "Transformando paixão em profissão.",
-    details: "8 anos de prática levaram à profissionalização. Comecei a entender a música não apenas como arte, mas como negócio, networking e forma de conexão humana.",
-    category: "music",
-    icon: <Star className="w-6 h-6" />,
-    skills: ["Performance", "Produção musical", "Networking", "Business musical"],
-    achievement: "Primeira apresentação profissional",
-    interactive: {
-      type: "hover",
-      action: "Passe o mouse para ver o setlist!"
-    }
-  },
-  {
-    id: "tech-discovery",
-    year: 2021,
-    title: "Descoberta Tech",
-    description: "O mundo digital me chamou.",
-    details: "Uma nova paixão surge: programação. Como na música, encontrei na tecnologia uma forma de criar, de resolver problemas e de impactar vidas. O freelancer nascia.",
-    category: "tech",
-    icon: <Code className="w-6 h-6" />,
-    skills: ["JavaScript", "React", "Problem Solving", "Autodidatismo"],
-    achievement: "Primeiro projeto freelancer entregue",
-    interactive: {
-      type: "click",
-      action: "Clique para ver o primeiro código!"
-    }
-  },
-  {
-    id: "startup-era",
-    year: 2022,
-    title: "Era Startup",
-    description: "ERP, clientes, crescimento acelerado.",
-    details: "Mergulhei no mundo das startups. Desenvolvimento de ERP, contato direto com clientes, aprendendo que tecnologia é sobre pessoas, não apenas código.",
-    category: "tech",
-    icon: <Rocket className="w-6 h-6" />,
-    skills: ["ERP Systems", "Frontend", "Customer Success", "Product Mindset"],
-    achievement: "Sistema ERP usado por 100+ empresas",
-    interactive: {
-      type: "scroll",
-      action: "Role para ver métricas de impacto!"
-    }
-  },
-  {
-    id: "fullstack-evolution",
-    year: 2023,
-    title: "Evolução Full Stack",
-    description: "Backend, mentoria, liderança técnica.",
-    details: "Na AZ Tecnologia, evoluí para full stack. Java, Spring Boot, arquitetura, e mais importante: comecei a mentorar outros desenvolvedores. Liderança técnica nasceu.",
-    category: "tech",
-    icon: <Zap className="w-6 h-6" />,
-    skills: ["Java", "Spring Boot", "Mentoria", "Arquitetura", "Technical Leadership"],
-    achievement: "Mentorei 5+ desenvolvedores junior",
-    interactive: {
-      type: "click",
-      action: "Clique para ver projetos desenvolvidos!"
-    }
-  },
-  {
-    id: "global-journey",
-    year: 2024,
-    title: "Jornada Global - O Core da Transformação",
-    description: "10 países, infinitas lições, transformação completa.",
-    details: "A flexibilidade do trabalho remoto me permitiu uma experiência única: trabalhar enquanto explorava culturas, mentalidades e formas de viver completamente diferentes. Cada país trouxe uma lição única, moldando não apenas minhas skills técnicas, mas principalmente minha visão de mundo e capacidade de adaptação.",
-    category: "travel",
-    icon: <Globe className="w-6 h-6" />,
-    location: "Brasil → Portugal → França → Holanda → Alemanha → Rep. Tcheca → Áustria → Itália → Argentina",
-    skills: [
-      "Remote Leadership", "Cultural Intelligence", "Global Mindset", "Cross-timezone Management", 
-      "Multilingual Communication", "Agile Adaptation", "International Business", "Geo-distributed Teams",
-      "European Work Culture", "Latin Mindset Integration", "Digital Nomad Workflow", "Global Networking"
-    ],
-    achievement: "10 países, 50+ projetos, 15+ culturas experienciadas",
-    interactive: {
-      type: "click",
-      action: "Explore cada país da jornada!"
-    }
-  }
-];
-
 const ScrollJourneyMap = () => {
   const { t } = useTranslation();
+  
+  const journeyData: JourneyEvent[] = [
+    {
+      id: "music-start",
+      year: 2007,
+      title: t('journey.musicStart.title'),
+      description: t('journey.musicStart.description'),
+      details: t('journey.musicStart.details'),
+      category: "music",
+      icon: <Music className="w-6 h-6" />,
+      skills: [t('skills.creativity'), t('skills.discipline'), t('skills.artistic'), t('skills.dedication')],
+      achievement: t('journey.musicStart.achievement'),
+      interactive: {
+        type: "click",
+        action: t('journey.musicStart.interactive')
+      }
+    },
+    {
+      id: "music-professional",
+      year: 2015,
+      title: t('journey.musicProfessional.title'),
+      description: t('journey.musicProfessional.description'),
+      details: t('journey.musicProfessional.details'),
+      category: "music",
+      icon: <Star className="w-6 h-6" />,
+      skills: [t('skills.performance'), t('skills.production'), t('skills.networking'), t('skills.business')],
+      achievement: t('journey.musicProfessional.achievement'),
+      interactive: {
+        type: "hover",
+        action: t('journey.musicProfessional.interactive')
+      }
+    },
+    {
+      id: "tech-discovery",
+      year: 2021,
+      title: t('journey.techDiscovery.title'),
+      description: t('journey.techDiscovery.description'),
+      details: t('journey.techDiscovery.details'),
+      category: "tech",
+      icon: <Code className="w-6 h-6" />,
+      skills: ["JavaScript", "React", t('skills.problemSolving'), t('skills.selfLearning')],
+      achievement: t('journey.techDiscovery.achievement'),
+      interactive: {
+        type: "click",
+        action: t('journey.techDiscovery.interactive')
+      }
+    },
+    {
+      id: "startup-era",
+      year: 2022,
+      title: t('journey.startupEra.title'),
+      description: t('journey.startupEra.description'),
+      details: t('journey.startupEra.details'),
+      category: "tech",
+      icon: <Rocket className="w-6 h-6" />,
+      skills: [t('skills.erpSystems'), t('skills.frontend'), t('skills.customerSuccess'), t('skills.productMindset')],
+      achievement: t('journey.startupEra.achievement'),
+      interactive: {
+        type: "scroll",
+        action: t('journey.startupEra.interactive')
+      }
+    },
+    {
+      id: "fullstack-evolution",
+      year: 2023,
+      title: t('journey.fullstackEvolution.title'),
+      description: t('journey.fullstackEvolution.description'),
+      details: t('journey.fullstackEvolution.details'),
+      category: "tech",
+      icon: <Zap className="w-6 h-6" />,
+      skills: ["Java", "Spring Boot", t('skills.mentoring'), t('skills.architecture'), t('skills.technicalLeadership')],
+      achievement: t('journey.fullstackEvolution.achievement'),
+      interactive: {
+        type: "click",
+        action: t('journey.fullstackEvolution.interactive')
+      }
+    },
+    {
+      id: "global-journey",
+      year: 2024,
+      title: t('journey.globalJourney.title'),
+      description: t('journey.globalJourney.description'),
+      details: t('journey.globalJourney.details'),
+      category: "travel",
+      icon: <Globe className="w-6 h-6" />,
+      location: t('journey.globalJourney.location'),
+      skills: [
+        t('skills.remoteLeadership'), t('skills.culturalIntelligence'), t('skills.globalMindset'), t('skills.timezoneManagement'), 
+        t('skills.multilingualComm'), t('skills.agileAdaptation'), t('skills.internationalBusiness'), t('skills.distributedTeams'),
+        t('skills.europeanWorkCulture'), t('skills.latinMindset'), t('skills.digitalNomadWorkflow'), t('skills.globalNetworking')
+      ],
+      achievement: t('journey.globalJourney.achievement'),
+      interactive: {
+        type: "click",
+        action: t('journey.globalJourney.interactive')
+      }
+    }
+  ];
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeInteraction, setActiveInteraction] = useState<string | null>(null);
@@ -254,13 +254,13 @@ const ScrollJourneyMap = () => {
                       <Badge className={`bg-${categoryColors[event.category]}/20 text-${categoryColors[event.category]} border-${categoryColors[event.category]}/30 mb-2`}>
                         {event.year}
                       </Badge>
-                      <h2 className="text-4xl font-bold">{t(`journey.${event.id}.title`)}</h2>
+                      <h2 className="text-4xl font-bold">{event.title}</h2>
                     </div>
                   </div>
 
-                  <p className="text-xl text-muted-foreground">{t(`journey.${event.id}.description`)}</p>
+                  <p className="text-xl text-muted-foreground">{event.description}</p>
                   
-                  <p className="text-foreground leading-relaxed">{t(`journey.${event.id}.details`)}</p>
+                  <p className="text-foreground leading-relaxed">{event.details}</p>
 
                   {event.location && (
                     <div className="flex items-start gap-2 p-4 bg-card/50 rounded-lg border">
@@ -272,7 +272,7 @@ const ScrollJourneyMap = () => {
                   {event.achievement && (
                     <div className="flex items-center gap-2 p-4 bg-gradient-primary/10 rounded-lg border border-primary/20">
                       <Award className="w-5 h-5 text-primary" />
-                      <span className="font-medium">{t(`journey.${event.id}.achievement`)}</span>
+                      <span className="font-medium">{event.achievement}</span>
                     </div>
                   )}
 
@@ -308,7 +308,7 @@ const ScrollJourneyMap = () => {
                       onMouseEnter={() => event.interactive?.type === 'hover' && handleInteraction(event.id)}
                     >
                       <Heart className="w-4 h-4 mr-2" />
-                      {t(`journey.${event.id}.interactive`)}
+                      {event.interactive.action}
                     </Button>
                   )}
                 </div>
