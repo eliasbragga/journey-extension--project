@@ -91,7 +91,7 @@ const translations = {
     'skills.globalNetworking': 'Global Networking',
     
     // Global Journey Section
-    'global.title': '🌍 Jornada Global 2024',
+    'global.title': 'Jornada Global 2024',
     'global.subtitle': 'Uma transformação completa através de culturas, mentalidades e formas de trabalhar',
     'global.stats.countries': 'Países Explorados',
     'global.stats.projects': 'Projetos Desenvolvidos',

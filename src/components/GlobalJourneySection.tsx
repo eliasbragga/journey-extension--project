@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MapPin, Briefcase, Users, Clock, Zap, Globe, Star, Heart, Trophy, Plane } from "lucide-react";
+import { MapPin, Briefcase, Users, Clock, Zap, Globe, Star, Heart, Trophy, Plane, Calendar } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
 
 interface CountryExperience {
@@ -17,6 +17,7 @@ interface CountryExperience {
   workStyle: string;
   businessTips: string;
   coordinates: { x: number; y: number };
+  year: string
 }
 
 const countryExperiences: CountryExperience[] = [
@@ -25,118 +26,142 @@ const countryExperiences: CountryExperience[] = [
     country: "Brasil",
     flag: "🇧🇷",
     duration: "Base de origem",
+    year: "Base de origem",
     highlights: ["Mentalidade empreendedora", "Networking local", "Inovação tech nacional"],
-    skills: ["Portuguese Native", "Brazilian Business Culture", "Local Market Knowledge"],
+    skills: ["Português Nativo", "Cultura de Negócios Brasileira", "Conhecimento do Mercado Local"],
     projects: 15,
     culturalInsights: "Criatividade e jeitinho brasileiro na resolução de problemas",
-    workStyle: "Colaborativo e relationship-driven",
+    workStyle: "Colaborativo e orientado a relacionamentos",
     businessTips: "Relacionamentos pessoais são fundamentais",
-    coordinates: { x: 25, y: 70 }
+    coordinates: { x: 10, y: 76 }
   },
   {
     id: "portugal",
     country: "Portugal",
     flag: "🇵🇹",
     duration: "3 meses",
-    highlights: ["Gateway para Europa", "Cultura tech emergente", "Qualidade de vida"],
-    skills: ["European Work Standards", "Cross-cultural Adaptation", "EU Business Practices"],
+    year: "2024 | 2025",
+    highlights: ["Porta de entrada para a Europa", "Cultura tech emergente", "Qualidade de vida"],
+    skills: ["Padrões Europeus de Trabalho", "Adaptação Intercultural", "Práticas de Negócios da UE"],
     projects: 8,
-    culturalInsights: "Equilibrio perfeito entre tradição e inovação",
+    culturalInsights: "Equilíbrio perfeito entre tradição e inovação",
     workStyle: "Estruturado mas flexível",
     businessTips: "Pontualidade e profissionalismo são essenciais",
-    coordinates: { x: 48, y: 35 }
+    coordinates: { x: 15, y: 35 }
+  },
+  {
+    id: "espanha",
+    country: "Espanha",
+    flag: "🇪🇸",
+    duration: "3 meses",
+    year: "2024",
+    highlights: ["Colaboração", "Criatividade", "Flexibilidade"],
+    skills: ["Colaboração em Equipe", "Resolução Criativa de Problemas"],
+    projects: 5,
+    culturalInsights: "Valorização das relações pessoais e equilíbrio entre vida e trabalho",
+    workStyle: "Dinâmico e colaborativo",
+    businessTips: "Invista tempo em criar confiança antes de fechar negócios",
+    coordinates: { x: 35, y: 35 }
   },
   {
     id: "franca",
     country: "França",
     flag: "🇫🇷",
     duration: "2 meses",
+    year: "2024",
     highlights: ["Excelência técnica", "Design thinking", "Luxo e qualidade"],
-    skills: ["French Business Etiquette", "Design Excellence", "Luxury Market Understanding"],
+    skills: ["Comunicação Intercultural", "Excelência em Design", "Desenvolvimento Front-end"],
     projects: 6,
-    culturalInsights: "Attention aux détails e perfectionnisme elevado",
+    culturalInsights: "Attention aux détails e perfectionnisme élevé",
     workStyle: "Formal e orientado à qualidade",
     businessTips: "Preparação e apresentação impecáveis",
-    coordinates: { x: 50, y: 28 }
+    coordinates: { x: 38, y: 23 }
   },
   {
     id: "holanda",
     country: "Holanda",
     flag: "🇳🇱",
     duration: "2 meses",
+    year: "2024",
     highlights: ["Inovação sustentável", "Trabalho remoto avançado", "Eficiência máxima"],
-    skills: ["Sustainable Tech", "Remote Work Mastery", "Efficiency Optimization"],
+    skills: ["Tecnologia Sustentável", "Domínio do Trabalho Remoto", "Otimização da Eficiência"],
     projects: 7,
     culturalInsights: "Diretos, honestos e incrivelmente eficientes",
-    workStyle: "Horizontal e result-oriented",
+    workStyle: "Horizontal e orientado a resultados",
     businessTips: "Seja direto e vá direto ao ponto",
-    coordinates: { x: 52, y: 22 }
+    coordinates: { x: 55, y: 16}
   },
   {
     id: "alemanha",
     country: "Alemanha",
     flag: "🇩🇪",
     duration: "2 meses",
+    year: "2024",
     highlights: ["Engenharia de software", "Processos robustos", "Indústria 4.0"],
-    skills: ["German Engineering Mindset", "Process Optimization", "Industrial Innovation"],
+    skills: ["Arquitetura de Software", "Performance Web", "Desenvolvimento Full-Stack"],
     projects: 9,
     culturalInsights: "Precisão, planejamento e execução perfeita",
-    workStyle: "Estruturado e process-driven",
+    workStyle: "Estruturado e orientado a processos",
     businessTips: "Planejamento detalhado é fundamental",
-    coordinates: { x: 54, y: 25 }
+    coordinates: {  x: 75, y: 25 }
   },
   {
     id: "republica-tcheca",
     country: "República Tcheca",
     flag: "🇨🇿",
     duration: "1.5 meses",
+    year: "2024",
     highlights: ["Hub tech emergente", "Custo-benefício", "História rica"],
-    skills: ["Eastern European Markets", "Cost-Effective Solutions", "Cultural Bridge Building"],
+    skills: ["Segurança Web", "Soluções Custo-Efetivas", "Construção de Pontes Culturais"],
     projects: 5,
-    culturalInsights: "Resilência histórica aplicada à inovação",
-    workStyle: "Pragmático e value-focused",
-    businessTips: "Value for money é muito valorizado",
-    coordinates: { x: 56, y: 30 }
+    culturalInsights: "Resiliência histórica aplicada à inovação",
+    workStyle: "Pragmático e focado em valor",
+    businessTips: "O custo-benefício é muito valorizado",
+    coordinates: { x: 85, y: 40 }
   },
   {
     id: "austria",
     country: "Áustria",
     flag: "🇦🇹",
     duration: "1 mês",
-    highlights: ["Precisão suíça", "Qualidade premium", "Stability-first"],
-    skills: ["Premium Service Delivery", "Quality Assurance", "Stability-focused Development"],
+    year: "2024",
+    highlights: ["Precisão suíça", "Qualidade premium", "Estabilidade em primeiro lugar"],
+    skills: ["Entrega de Serviço Premium", "Garantia de Qualidade", "Desenvolvimento focado em Estabilidade"],
     projects: 4,
     culturalInsights: "Qualidade sobre quantidade, sempre",
-    workStyle: "Conservative mas premium",
+    workStyle: "Conservador mas premium",
     businessTips: "Qualidade e confiabilidade são inegociáveis",
-    coordinates: { x: 56, y: 32 }
+    coordinates: {  x: 85, y: 55 }
   },
   {
     id: "italia",
     country: "Itália",
     flag: "🇮🇹",
     duration: "1.5 meses",
-    highlights: ["Design excepcional", "Criatividade", "La dolce vita workflow"],
-    skills: ["Italian Design Principles", "Creative Problem Solving", "Lifestyle Integration"],
+    year: "2024 | 2025",
+    highlights: ["Design excepcional", "Criatividade", "Fluxo de trabalho la dolce vita"],
+    skills: ["Princípios do Design Italiano", "Resolução Criativa de Problemas", "Integração ao Estilo de Vida"],
     projects: 6,
     culturalInsights: "Beleza e funcionalidade podem coexistir",
-    workStyle: "Creative e relationship-centered",
+    workStyle: "Criativo e orientado a relacionamentos",
     businessTips: "Relacionamentos e estética importam muito",
-    coordinates: { x: 54, y: 38 }
+    coordinates: {  x: 65, y: 70  }
   },
   {
     id: "argentina",
     country: "Argentina",
     flag: "🇦🇷",
     duration: "2 meses",
-    highlights: ["Paixão latino", "Resilência econômica", "Tango mindset"],
-    skills: ["Latin American Markets", "Economic Adaptability", "Passionate Leadership"],
+    year: "2025",
+    highlights: ["Paixão latina", "Resiliência econômica", "Criatividade cultural"],
+    skills: ["Mercados Latino-Americanos", "Adaptabilidade Econômica", "Liderança Apaixonada"],
     projects: 8,
     culturalInsights: "Paixão e adaptabilidade em constante mudança",
-    workStyle: "Passionate e adaptable",
+    workStyle: "Apaixonado e adaptável",
     businessTips: "Flexibilidade e relacionamentos calorosos",
-    coordinates: { x: 30, y: 85 }
+    coordinates: { x: 30, y: 93 }
   }
+
 ];
 
 interface GlobalJourneySectionProps {
@@ -145,10 +170,10 @@ interface GlobalJourneySectionProps {
   onInteraction: (id: string) => void;
 }
 
-const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({ 
-  isVisible, 
-  activeInteraction, 
-  onInteraction 
+const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
+  isVisible,
+  activeInteraction,
+  onInteraction
 }) => {
   const { t } = useTranslation();
   const [selectedCountry, setSelectedCountry] = useState<CountryExperience | null>(null);
@@ -166,9 +191,14 @@ const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
     <div className="space-y-8">
       {/* Main Title */}
       <div className="text-center mb-12">
-        <h2 className="text-6xl font-bold bg-gradient-to-r from-journey-travel to-journey-growth bg-clip-text text-transparent mb-4">
-          {t('global.title')}
-        </h2>
+        <div className="flex items-center justify-center" >
+          <h2 className="text-6xl font-bold from-journey-travel mb-5 mr-3">
+            🌍
+          </h2>
+          <h2 className="text-6xl font-bold bg-gradient-to-r from-journey-travel to-journey-growth bg-clip-text text-transparent mb-4">
+            {t('global.title')}
+          </h2>
+        </div>
         <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
           {t('global.subtitle')}
         </p>
@@ -181,8 +211,8 @@ const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
           <div className="text-sm text-muted-foreground">{t('global.stats.countries')}</div>
         </Card>
         <Card className="p-4 text-center bg-gradient-to-br from-journey-growth/10 to-journey-growth/5">
-          <div className="text-2xl font-bold text-journey-growth">{totalProjects}</div>
-          <div className="text-sm text-muted-foreground">{t('global.stats.projects')}</div>
+          <div className="text-2xl font-bold text-journey-growth">+ 90%</div>
+          <div className="text-sm text-muted-foreground">De Cobertura de testes</div>
         </Card>
         <Card className="p-4 text-center bg-gradient-to-br from-journey-tech/10 to-journey-tech/5">
           <div className="text-2xl font-bold text-journey-tech">{uniqueSkills.length}</div>
@@ -266,15 +296,14 @@ const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
           {/* Country tooltips */}
           {hoveredCountry && (
             <div
-              className="absolute bg-black/80 text-white px-3 py-2 rounded-lg text-sm pointer-events-none z-10 backdrop-blur-sm"
+              className="absolute bg-black/80 text-white px-3 py-2 rounded-lg text-sm top-0 pointer-events-none z-10 backdrop-blur-sm"
               style={{
-                left: `${countryExperiences.find(c => c.id === hoveredCountry)?.coordinates.x}%`,
+                left: `${countryExperiences.find(c => c.id === hoveredCountry)?.coordinates.x + 10}%`,
                 top: `${(countryExperiences.find(c => c.id === hoveredCountry)?.coordinates.y || 0) - 10}%`,
                 transform: 'translate(-50%, -100%)'
               }}
             >
               <div className="font-medium">{countryExperiences.find(c => c.id === hoveredCountry)?.country}</div>
-              <div className="text-xs opacity-80">{countryExperiences.find(c => c.id === hoveredCountry)?.duration}</div>
             </div>
           )}
         </div>
@@ -298,8 +327,8 @@ const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
               <div>
                 <h4 className="font-semibold text-lg">{country.country}</h4>
                 <p className="text-sm text-muted-foreground flex items-center gap-1">
-                  <Clock className="w-3 h-3" />
-                  {country.duration}
+                  <Calendar className="w-3 h-3" />
+                  {country.year}
                 </p>
               </div>
             </div>
@@ -307,7 +336,7 @@ const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <Briefcase className="w-4 h-4 text-journey-tech" />
-                <span className="text-sm font-medium">{country.projects} projetos</span>
+                <span className="text-sm font-medium">Cultura Local</span>
               </div>
 
               <div>
@@ -431,13 +460,13 @@ const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 p-4 bg-journey-travel/10 rounded-lg">
+              {/* <div className="flex items-center gap-4 p-4 bg-journey-travel/10 rounded-lg">
                 <Briefcase className="w-5 h-5 text-journey-travel" />
                 <div>
                   <div className="font-semibold">{selectedCountry.projects} Projetos Desenvolvidos</div>
                   <div className="text-sm text-muted-foreground">Durante {selectedCountry.duration}</div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </Card>

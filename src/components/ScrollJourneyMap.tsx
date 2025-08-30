@@ -2,8 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Music, Code, MapPin, Briefcase, Plane, Calendar, Star, Heart, Zap, Globe, Award, Rocket } from "lucide-react";
-import { useTranslation } from "@/hooks/useTranslation";
+import { Music, Code, MapPin, Briefcase, Plane, Calendar, Star, Heart, Zap, Globe, Award, Rocket, ArrowLeft } from "lucide-react";
 import GlobalJourneySection from "./GlobalJourneySection";
 
 interface JourneyEvent {
@@ -23,106 +22,105 @@ interface JourneyEvent {
   };
 }
 
-const ScrollJourneyMap = () => {
-  const { t } = useTranslation();
-  
-  const journeyData: JourneyEvent[] = [
-    {
-      id: "music-start",
-      year: 2007,
-      title: t('journey.musicStart.title'),
-      description: t('journey.musicStart.description'),
-      details: t('journey.musicStart.details'),
-      category: "music",
-      icon: <Music className="w-6 h-6" />,
-      skills: [t('skills.creativity'), t('skills.discipline'), t('skills.artistic'), t('skills.dedication')],
-      achievement: t('journey.musicStart.achievement'),
-      interactive: {
-        type: "click",
-        action: t('journey.musicStart.interactive')
-      }
-    },
-    {
-      id: "music-professional",
-      year: 2015,
-      title: t('journey.musicProfessional.title'),
-      description: t('journey.musicProfessional.description'),
-      details: t('journey.musicProfessional.details'),
-      category: "music",
-      icon: <Star className="w-6 h-6" />,
-      skills: [t('skills.performance'), t('skills.production'), t('skills.networking'), t('skills.business')],
-      achievement: t('journey.musicProfessional.achievement'),
-      interactive: {
-        type: "hover",
-        action: t('journey.musicProfessional.interactive')
-      }
-    },
-    {
-      id: "tech-discovery",
-      year: 2021,
-      title: t('journey.techDiscovery.title'),
-      description: t('journey.techDiscovery.description'),
-      details: t('journey.techDiscovery.details'),
-      category: "tech",
-      icon: <Code className="w-6 h-6" />,
-      skills: ["JavaScript", "React", t('skills.problemSolving'), t('skills.selfLearning')],
-      achievement: t('journey.techDiscovery.achievement'),
-      interactive: {
-        type: "click",
-        action: t('journey.techDiscovery.interactive')
-      }
-    },
-    {
-      id: "startup-era",
-      year: 2022,
-      title: t('journey.startupEra.title'),
-      description: t('journey.startupEra.description'),
-      details: t('journey.startupEra.details'),
-      category: "tech",
-      icon: <Rocket className="w-6 h-6" />,
-      skills: [t('skills.erpSystems'), t('skills.frontend'), t('skills.customerSuccess'), t('skills.productMindset')],
-      achievement: t('journey.startupEra.achievement'),
-      interactive: {
-        type: "scroll",
-        action: t('journey.startupEra.interactive')
-      }
-    },
-    {
-      id: "fullstack-evolution",
-      year: 2023,
-      title: t('journey.fullstackEvolution.title'),
-      description: t('journey.fullstackEvolution.description'),
-      details: t('journey.fullstackEvolution.details'),
-      category: "tech",
-      icon: <Zap className="w-6 h-6" />,
-      skills: ["Java", "Spring Boot", t('skills.mentoring'), t('skills.architecture'), t('skills.technicalLeadership')],
-      achievement: t('journey.fullstackEvolution.achievement'),
-      interactive: {
-        type: "click",
-        action: t('journey.fullstackEvolution.interactive')
-      }
-    },
-    {
-      id: "global-journey",
-      year: 2024,
-      title: t('journey.globalJourney.title'),
-      description: t('journey.globalJourney.description'),
-      details: t('journey.globalJourney.details'),
-      category: "travel",
-      icon: <Globe className="w-6 h-6" />,
-      location: t('journey.globalJourney.location'),
-      skills: [
-        t('skills.remoteLeadership'), t('skills.culturalIntelligence'), t('skills.globalMindset'), t('skills.timezoneManagement'), 
-        t('skills.multilingualComm'), t('skills.agileAdaptation'), t('skills.internationalBusiness'), t('skills.distributedTeams'),
-        t('skills.europeanWorkCulture'), t('skills.latinMindset'), t('skills.digitalNomadWorkflow'), t('skills.globalNetworking')
-      ],
-      achievement: t('journey.globalJourney.achievement'),
-      interactive: {
-        type: "click",
-        action: t('journey.globalJourney.interactive')
-      }
+const journeyData: JourneyEvent[] = [
+  {
+    id: "music-start",
+    year: 2007,
+    title: "Primeiros Acordes",
+    description: "O início de uma paixão que duraria para sempre.",
+    details: "Aos primeiros toques no instrumento, descobri um mundo de possibilidades. A música se tornou minha linguagem universal, ensinando disciplina, criatividade e expressão.",
+    category: "music",
+    icon: <Music className="w-6 h-6" />,
+    skills: ["Criatividade", "Disciplina", "Expressão artística", "Dedicação"],
+    achievement: "Primeiros acordes dominados",
+    interactive: {
+      type: "click",
+      action: "Toque para ouvir os primeiros acordes!"
     }
-  ];
+  },
+  {
+    id: "music-professional",
+    year: 2015,
+    title: "Música Profissional",
+    description: "Transformando paixão em profissão.",
+    details: "8 anos de prática levaram à profissionalização. Comecei a entender a música não apenas como arte, mas como negócio, networking e forma de conexão humana.",
+    category: "music",
+    icon: <Star className="w-6 h-6" />,
+    skills: ["Performance", "Repasse de conhecimento", "Facilidade em aprender", "Produção musical", "Networking", "Business musical"],
+    achievement: "Primeira apresentação profissional",
+    interactive: {
+      type: "hover",
+      action: "Passe o mouse para ver o setlist!"
+    }
+  },
+  {
+    id: "tech-discovery",
+    year: 2021,
+    title: "Descoberta Tech",
+    description: "O mundo digital me chamou.",
+    details: "Uma nova paixão surge: programação. Como na música, encontrei na tecnologia uma forma de criar, de resolver problemas e de impactar vidas. O freelancer nascia.",
+    category: "tech",
+    icon: <Code className="w-6 h-6" />,
+    skills: ["JavaScript", "Vue.js", "React", "Angular", "UI/UX", "Resolução de problema", "Autodidatismo"],
+    achievement: "Primeiro projeto freelancer entregue",
+    interactive: {
+      type: "click",
+      action: "Clique para ver o primeiro código!"
+    }
+  },
+  {
+    id: "startup-era",
+    year: 2022,
+    title: "Era Startup",
+    description: "ERP, clientes, crescimento acelerado.",
+    details: "Mergulhei no mundo das startups. Desenvolvimento de ERP, contato direto com clientes, aprendendo que tecnologia é sobre pessoas, não apenas código.",
+    category: "tech",
+    icon: <Rocket className="w-6 h-6" />,
+    skills: ["Sistemas ERP", "Frontend", "Vue.js", "React", "Docker", "Entregas de qualidade", "Sucesso do Cliente", "Visão de Produto"],
+    achievement: "Sistema ERP adotado no mercado e consolidado como solução de gestão empresarial",
+    interactive: {
+      type: "scroll",
+      action: "Role para ver métricas de impacto!"
+    }
+  },
+  {
+    id: "fullstack-evolution",
+    year: 2023,
+    title: "Evolução Full Stack",
+    description: "Backend, mentoria, liderança técnica, IA.",
+    details: "Na AZ Tecnologia, evoluí para full stack. Java, Spring Boot, arquitetura, e mais importante: comecei a mentorar outros desenvolvedores e fiz a migração de tecnologia - vue2 para vue3. Liderança técnica nasceu.",
+    category: "tech",
+    icon: <Zap className="w-6 h-6" />,
+    skills: ["Java", "Spring Boot","Vue.js", "Angular", "Docker", "Mensageria", "Micro-serviços", "Micro-frontends", "Mentoria", "Arquitetura", "Referência Técnica", "Migração de Tecnologia"],
+    achievement: "Mentorei 5+ desenvolvedores junior",
+    interactive: {
+      type: "click",
+      action: "Clique para ver projetos desenvolvidos!"
+    }
+  },
+  {
+    id: "global-journey",
+    year: 2024,
+    title: "Jornada Global - O Core da Transformação",
+    description: "10 países, infinitas lições, transformação completa.",
+    details: "A flexibilidade do trabalho remoto me permitiu uma experiência única: trabalhar enquanto explorava culturas, mentalidades e formas de viver completamente diferentes. Cada país trouxe uma lição única, moldando não apenas minhas skills técnicas, mas principalmente minha visão de mundo e capacidade de adaptação.",
+    category: "travel",
+    icon: <Globe className="w-6 h-6" />,
+    location: "Brasil → Portugal → França → Holanda → Alemanha → Rep. Tcheca → Áustria → Itália → Argentina",
+    skills: [
+      "Remote Leadership", "Cultural Intelligence", "Global Mindset", "Cross-timezone Management", 
+      "Multilingual Communication", "Agile Adaptation", "International Business", "Geo-distributed Teams",
+      "European Work Culture", "Latin Mindset Integration", "Digital Nomad Workflow", "Global Networking"
+    ],
+    achievement: "10 países, 50+ projetos, 15+ culturas experienciadas",
+    interactive: {
+      type: "click",
+      action: "Explore cada país da jornada!"
+    }
+  }
+];
+
+const ScrollJourneyMap = () => {
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeInteraction, setActiveInteraction] = useState<string | null>(null);
@@ -176,9 +174,23 @@ const ScrollJourneyMap = () => {
   };
 
   return (
-    <div ref={containerRef} className="relative pt-16">
+    <div ref={containerRef} className="relative">
       {/* Fixed Journey Progress Line */}
-      <div className="fixed left-8 top-16 h-screen w-1 bg-border/30 z-10">
+      <div className="fixed left-8 top-0 h-screen w-1 bg-border/30 z-10">
+     <Button
+  variant="outline"
+  size="lg"
+  onClick={() => window.open("http://localhost:8081/", "_self")}
+  className="ml-5 mt-3 text-blue-700 font-semibold rounded-lg
+             border-2 border-blue-700 px-3 flex items-center gap-2
+             transition-all duration-300 group"
+>
+  <ArrowLeft className="w-5 h-5" />
+  <span className="opacity-0 max-w-0 overflow-hidden group-hover:opacity-100 group-hover:max-w-xs transition-all duration-300">
+    Voltar para Portfólio
+  </span>
+</Button>
+
         <div 
           className="w-full bg-gradient-journey transition-all duration-300 ease-out"
           style={{ height: `${scrollProgress * 100}%` }}
@@ -194,14 +206,14 @@ const ScrollJourneyMap = () => {
         <div className="absolute inset-0 bg-gradient-journey opacity-10" />
         <div className="text-center z-10 px-4">
           <h1 className="text-6xl md:text-8xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-6 animate-slide-in-up">
-            {t('hero.title')}
+            Minha Jornada
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto animate-slide-in-up" style={{ animationDelay: '0.2s' }}>
-            {t('hero.subtitle')}
+            Uma história de paixão, crescimento e descobertas - da música à tecnologia, passando pelo mundo
           </p>
           <div className="animate-bounce-gentle">
             <Badge variant="outline" className="text-lg px-6 py-2 animate-glow-pulse">
-              {t('hero.scrollPrompt')}
+              Role para começar a jornada ↓
             </Badge>
           </div>
         </div>
@@ -280,7 +292,7 @@ const ScrollJourneyMap = () => {
                     <div>
                       <h4 className="font-semibold mb-3 flex items-center gap-2">
                         <Zap className="w-4 h-4" />
-                        {t('skills.developed')}
+                        Skills Desenvolvidas:
                       </h4>
                       <div className="flex flex-wrap gap-2">
                         {event.skills.map((skill, skillIndex) => (
@@ -299,7 +311,7 @@ const ScrollJourneyMap = () => {
                     </div>
                   )}
 
-                  {event.interactive && (
+                  {/* {event.interactive && (
                     <Button
                       className={`mt-6 ${
                         activeInteraction === event.id ? 'animate-glow-pulse' : ''
@@ -310,7 +322,7 @@ const ScrollJourneyMap = () => {
                       <Heart className="w-4 h-4 mr-2" />
                       {event.interactive.action}
                     </Button>
-                  )}
+                  )} */}
                 </div>
 
                 {/* Interactive Visual Side */}
@@ -343,7 +355,7 @@ const ScrollJourneyMap = () => {
                       {activeInteraction === event.id && (
                         <div className="mt-4 animate-slide-in-up">
                           <Badge className="bg-primary/20 text-primary border-primary/30">
-                            {t('skills.interaction')}
+                            ✨ Interação ativada!
                           </Badge>
                         </div>
                       )}
@@ -370,21 +382,36 @@ const ScrollJourneyMap = () => {
       <section className="min-h-screen flex items-center justify-center bg-gradient-background relative">
         <div className="text-center z-10 px-4">
           <h2 className="text-4xl md:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-6">
-            {t('final.title')}
+            A Jornada Continua...
           </h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            {t('final.description')}
+            Cada passo foi uma lição, cada desafio uma oportunidade de crescimento. 
+            A jornada global especialmente moldou uma visão de mundo única.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Badge variant="outline" className="text-lg px-4 py-2">
-              {journeyData.length} {t('final.milestones')}
-            </Badge>
-            <Badge className="text-lg px-4 py-2 bg-journey-travel/20 text-journey-travel border-journey-travel/30">
-              10 {t('final.countries')}
-            </Badge>
-            <Badge variant="outline" className="text-lg px-4 py-2">
-              {t('final.possibilities')}
-            </Badge>
+          <Badge className="text-lg px-4 py-2 min-w-[200px] text-center" variant="outline">
+            {journeyData.length} marcos alcançados
+          </Badge>
+          <Badge className="text-lg px-4 py-2 min-w-[200px] text-center bg-journey-travel/20 text-journey-travel border-journey-travel/30">
+            10 países explorados
+          </Badge>
+          <Badge className="text-lg px-4 py-2 min-w-[200px] text-center" variant="outline">
+            ∞ possibilidades à frente
+          </Badge>
+          </div>
+          <div className="flex flex-wrap gap-4 justify-center mt-5">
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => window.open("http://localhost:8081/", "_self")}
+              className="ml-3 mt-3 text-blue-700 font-semibold rounded-lg
+                        border-2 border-blue-700 px-3 flex items-center gap-2
+                        transition-colors duration-300
+                        hover:text-blue-900 hover:border-blue-900"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </Button>
+
           </div>
         </div>
       </section>

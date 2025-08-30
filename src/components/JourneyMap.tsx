@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Music, Code, MapPin, Briefcase, Plane, Calendar } from "lucide-react";
+import { Music, Code, MapPin, Briefcase, Plane, Calendar, BookOpen } from "lucide-react";
+
 
 interface JourneyEvent {
   id: string;
@@ -47,7 +48,7 @@ const journeyData: JourneyEvent[] = [
     description: "Entrada no mundo da programação como freelancer, descobrindo nova paixão.",
     category: "tech",
     icon: <Code className="w-4 h-4" />,
-    skills: ["JavaScript", "React", "Desenvolvimento web"],
+    skills: ["JavaScript", "Vue.js", "React", "Angular", "Desenvolvimento web", "UX/UI"],
     x: 35,
     y: 60
   },
