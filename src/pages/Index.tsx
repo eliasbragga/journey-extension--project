@@ -1,7 +1,13 @@
 import ScrollJourneyMap from "@/components/ScrollJourneyMap";
+import Header from "@/components/Header";
 
 const Index = () => {
-  return <ScrollJourneyMap />;
+  return (
+    <>
+      <Header />
+      <ScrollJourneyMap />
+    </>
+  );
 };
 
 export default Index;

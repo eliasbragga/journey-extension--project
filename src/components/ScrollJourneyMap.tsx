@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Music, Code, MapPin, Briefcase, Plane, Calendar, Star, Heart, Zap, Globe, Award, Rocket } from "lucide-react";
+import { useTranslation } from "@/hooks/useTranslation";
 import GlobalJourneySection from "./GlobalJourneySection";
 
 interface JourneyEvent {
@@ -121,6 +122,7 @@ const journeyData: JourneyEvent[] = [
 ];
 
 const ScrollJourneyMap = () => {
+  const { t } = useTranslation();
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeInteraction, setActiveInteraction] = useState<string | null>(null);
@@ -174,9 +176,9 @@ const ScrollJourneyMap = () => {
   };
 
   return (
-    <div ref={containerRef} className="relative">
+    <div ref={containerRef} className="relative pt-16">
       {/* Fixed Journey Progress Line */}
-      <div className="fixed left-8 top-0 h-screen w-1 bg-border/30 z-10">
+      <div className="fixed left-8 top-16 h-screen w-1 bg-border/30 z-10">
         <div 
           className="w-full bg-gradient-journey transition-all duration-300 ease-out"
           style={{ height: `${scrollProgress * 100}%` }}
@@ -192,14 +194,14 @@ const ScrollJourneyMap = () => {
         <div className="absolute inset-0 bg-gradient-journey opacity-10" />
         <div className="text-center z-10 px-4">
           <h1 className="text-6xl md:text-8xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-6 animate-slide-in-up">
-            Minha Jornada
+            {t('hero.title')}
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto animate-slide-in-up" style={{ animationDelay: '0.2s' }}>
-            Uma história de paixão, crescimento e descobertas - da música à tecnologia, passando pelo mundo
+            {t('hero.subtitle')}
           </p>
           <div className="animate-bounce-gentle">
             <Badge variant="outline" className="text-lg px-6 py-2 animate-glow-pulse">
-              Role para começar a jornada ↓
+              {t('hero.scrollPrompt')}
             </Badge>
           </div>
         </div>
@@ -252,13 +254,13 @@ const ScrollJourneyMap = () => {
                       <Badge className={`bg-${categoryColors[event.category]}/20 text-${categoryColors[event.category]} border-${categoryColors[event.category]}/30 mb-2`}>
                         {event.year}
                       </Badge>
-                      <h2 className="text-4xl font-bold">{event.title}</h2>
+                      <h2 className="text-4xl font-bold">{t(`journey.${event.id}.title`)}</h2>
                     </div>
                   </div>
 
-                  <p className="text-xl text-muted-foreground">{event.description}</p>
+                  <p className="text-xl text-muted-foreground">{t(`journey.${event.id}.description`)}</p>
                   
-                  <p className="text-foreground leading-relaxed">{event.details}</p>
+                  <p className="text-foreground leading-relaxed">{t(`journey.${event.id}.details`)}</p>
 
                   {event.location && (
                     <div className="flex items-start gap-2 p-4 bg-card/50 rounded-lg border">
@@ -270,7 +272,7 @@ const ScrollJourneyMap = () => {
                   {event.achievement && (
                     <div className="flex items-center gap-2 p-4 bg-gradient-primary/10 rounded-lg border border-primary/20">
                       <Award className="w-5 h-5 text-primary" />
-                      <span className="font-medium">{event.achievement}</span>
+                      <span className="font-medium">{t(`journey.${event.id}.achievement`)}</span>
                     </div>
                   )}
 
@@ -278,7 +280,7 @@ const ScrollJourneyMap = () => {
                     <div>
                       <h4 className="font-semibold mb-3 flex items-center gap-2">
                         <Zap className="w-4 h-4" />
-                        Skills Desenvolvidas:
+                        {t('skills.developed')}
                       </h4>
                       <div className="flex flex-wrap gap-2">
                         {event.skills.map((skill, skillIndex) => (
@@ -306,7 +308,7 @@ const ScrollJourneyMap = () => {
                       onMouseEnter={() => event.interactive?.type === 'hover' && handleInteraction(event.id)}
                     >
                       <Heart className="w-4 h-4 mr-2" />
-                      {event.interactive.action}
+                      {t(`journey.${event.id}.interactive`)}
                     </Button>
                   )}
                 </div>
@@ -341,7 +343,7 @@ const ScrollJourneyMap = () => {
                       {activeInteraction === event.id && (
                         <div className="mt-4 animate-slide-in-up">
                           <Badge className="bg-primary/20 text-primary border-primary/30">
-                            ✨ Interação ativada!
+                            {t('skills.interaction')}
                           </Badge>
                         </div>
                       )}
@@ -368,21 +370,20 @@ const ScrollJourneyMap = () => {
       <section className="min-h-screen flex items-center justify-center bg-gradient-background relative">
         <div className="text-center z-10 px-4">
           <h2 className="text-4xl md:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-6">
-            A Jornada Continua...
+            {t('final.title')}
           </h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Cada passo foi uma lição, cada desafio uma oportunidade de crescimento. 
-            A jornada global especialmente moldou uma visão de mundo única.
+            {t('final.description')}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Badge variant="outline" className="text-lg px-4 py-2">
-              {journeyData.length} marcos alcançados
+              {journeyData.length} {t('final.milestones')}
             </Badge>
             <Badge className="text-lg px-4 py-2 bg-journey-travel/20 text-journey-travel border-journey-travel/30">
-              10 países explorados
+              10 {t('final.countries')}
             </Badge>
             <Badge variant="outline" className="text-lg px-4 py-2">
-              ∞ possibilidades à frente
+              {t('final.possibilities')}
             </Badge>
           </div>
         </div>

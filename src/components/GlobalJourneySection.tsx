@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MapPin, Briefcase, Users, Clock, Zap, Globe, Star, Heart, Trophy, Plane } from "lucide-react";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface CountryExperience {
   id: string;
@@ -149,6 +150,7 @@ const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
   activeInteraction, 
   onInteraction 
 }) => {
+  const { t } = useTranslation();
   const [selectedCountry, setSelectedCountry] = useState<CountryExperience | null>(null);
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
 
@@ -165,10 +167,10 @@ const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
       {/* Main Title */}
       <div className="text-center mb-12">
         <h2 className="text-6xl font-bold bg-gradient-to-r from-journey-travel to-journey-growth bg-clip-text text-transparent mb-4">
-          🌍 Jornada Global 2024
+          {t('global.title')}
         </h2>
         <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
-          Uma transformação completa através de culturas, mentalidades e formas de trabalhar
+          {t('global.subtitle')}
         </p>
       </div>
 
@@ -176,19 +178,19 @@ const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <Card className="p-4 text-center bg-gradient-to-br from-journey-travel/10 to-journey-travel/5">
           <div className="text-2xl font-bold text-journey-travel">{countryExperiences.length}</div>
-          <div className="text-sm text-muted-foreground">Países Explorados</div>
+          <div className="text-sm text-muted-foreground">{t('global.stats.countries')}</div>
         </Card>
         <Card className="p-4 text-center bg-gradient-to-br from-journey-growth/10 to-journey-growth/5">
           <div className="text-2xl font-bold text-journey-growth">{totalProjects}</div>
-          <div className="text-sm text-muted-foreground">Projetos Desenvolvidos</div>
+          <div className="text-sm text-muted-foreground">{t('global.stats.projects')}</div>
         </Card>
         <Card className="p-4 text-center bg-gradient-to-br from-journey-tech/10 to-journey-tech/5">
           <div className="text-2xl font-bold text-journey-tech">{uniqueSkills.length}</div>
-          <div className="text-sm text-muted-foreground">Skills Únicas</div>
+          <div className="text-sm text-muted-foreground">{t('global.stats.skills')}</div>
         </Card>
         <Card className="p-4 text-center bg-gradient-to-br from-journey-music/10 to-journey-music/5">
           <div className="text-2xl font-bold text-journey-music">15+</div>
-          <div className="text-sm text-muted-foreground">Culturas</div>
+          <div className="text-sm text-muted-foreground">{t('global.stats.cultures')}</div>
         </Card>
       </div>
 
@@ -197,9 +199,9 @@ const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
         <div className="text-center mb-6">
           <h3 className="text-2xl font-semibold mb-2 flex items-center justify-center gap-2">
             <Globe className="w-6 h-6 text-journey-travel" />
-            Mapa Interativo da Jornada
+            {t('global.map.title')}
           </h3>
-          <p className="text-muted-foreground">Clique em cada país para explorar as experiências</p>
+          <p className="text-muted-foreground">{t('global.map.subtitle')}</p>
         </div>
 
         <div className="relative w-full h-96 bg-gradient-to-br from-slate-900 to-slate-800 rounded-lg overflow-hidden">
@@ -374,7 +376,7 @@ const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
               <div>
                 <h4 className="font-semibold mb-3 flex items-center gap-2">
                   <Users className="w-4 h-4" />
-                  Insights Culturais
+                  {t('global.insights.cultural')}
                 </h4>
                 <p className="text-muted-foreground italic">"{selectedCountry.culturalInsights}"</p>
               </div>
@@ -382,7 +384,7 @@ const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
               <div>
                 <h4 className="font-semibold mb-3 flex items-center gap-2">
                   <Briefcase className="w-4 h-4" />
-                  Estilo de Trabalho
+                  {t('global.insights.workStyle')}
                 </h4>
                 <p className="text-muted-foreground">{selectedCountry.workStyle}</p>
               </div>
@@ -390,7 +392,7 @@ const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
               <div>
                 <h4 className="font-semibold mb-3 flex items-center gap-2">
                   <Trophy className="w-4 h-4" />
-                  Dica de Negócios
+                  {t('global.insights.businessTips')}
                 </h4>
                 <p className="text-muted-foreground">💡 {selectedCountry.businessTips}</p>
               </div>
@@ -400,7 +402,7 @@ const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
               <div>
                 <h4 className="font-semibold mb-3 flex items-center gap-2">
                   <Star className="w-4 h-4" />
-                  Principais Highlights
+                  {t('global.highlights')}
                 </h4>
                 <div className="space-y-2">
                   {selectedCountry.highlights.map((highlight) => (
@@ -415,7 +417,7 @@ const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
               <div>
                 <h4 className="font-semibold mb-3 flex items-center gap-2">
                   <Zap className="w-4 h-4" />
-                  Skills Específicas
+                  {t('global.skills')}
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {selectedCountry.skills.map((skill) => (
