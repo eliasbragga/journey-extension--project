@@ -388,7 +388,6 @@ const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
             <div className="text-6xl">{selectedCountry.flag}</div>
             <div>
               <h3 className="text-3xl font-bold">{selectedCountry.country}</h3>
-              <p className="text-journey-travel font-medium">{selectedCountry.duration}</p>
             </div>
             <Button
               variant="ghost"
