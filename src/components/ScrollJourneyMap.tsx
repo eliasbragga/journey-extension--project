@@ -180,7 +180,7 @@ const ScrollJourneyMap = () => {
      <Button
   variant="outline"
   size="lg"
-  onClick={() => window.open("https://eliasbragga-profile.netlify.app/", "_self")}
+  onClick={() => window.open("https://eliasbraga.com/", "_self")}
   className="ml-5 mt-3 text-blue-700 font-semibold rounded-lg
              border-2 border-blue-700 px-3 flex items-center gap-2
              transition-all duration-300 group"
@@ -403,7 +403,7 @@ const ScrollJourneyMap = () => {
             <Button
               variant="outline"
               size="lg"
-              onClick={() => window.open("https://eliasbragga-profile.netlify.app/", "_self")}
+              onClick={() => window.open("https://eliasbraga.com/", "_self")}
               className="ml-3 mt-3 text-blue-700 font-semibold rounded-lg
                         border-2 border-blue-700 px-3 flex items-center gap-2
                         transition-colors duration-300

@@ -1,0 +1,11 @@
+services:
+  journey:
+    build: .
+    ports:
+      - "3011:80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.minhaapp.rule=Host(`journey.eliasbraga.com`)"
+      - "traefik.http.routers.minhaapp.entrypoints=websecure"
+      - "traefik.http.routers.minhaapp.tls.certresolver=letsencrypt"
+      - "traefik.http.services.minhaapp.loadbalancer.server.port=3011"
