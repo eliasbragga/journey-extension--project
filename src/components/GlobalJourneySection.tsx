@@ -17,14 +17,16 @@ interface CountryExperience {
   workStyle: string;
   businessTips: string;
   coordinates: { x: number; y: number };
-  year: string
+  year: string,
+  code: string,
 }
 
 const countryExperiences: CountryExperience[] = [
   {
     id: "brasil",
     country: "Brasil",
-    flag: "🇧🇷",
+    flag: "br",
+    code: "br",
     duration: "Base de origem",
     year: "Base de origem",
     highlights: ["Mentalidade empreendedora", "Networking local", "Inovação tech nacional"],
@@ -38,7 +40,8 @@ const countryExperiences: CountryExperience[] = [
   {
     id: "portugal",
     country: "Portugal",
-    flag: "🇵🇹",
+    flag: "pt",
+    code: "",
     duration: "3 meses",
     year: "2024 | 2025",
     highlights: ["Porta de entrada para a Europa", "Cultura tech emergente", "Qualidade de vida"],
@@ -52,7 +55,8 @@ const countryExperiences: CountryExperience[] = [
   {
     id: "espanha",
     country: "Espanha",
-    flag: "🇪🇸",
+    flag: "es",
+    code: "",
     duration: "3 meses",
     year: "2024",
     highlights: ["Colaboração", "Criatividade", "Flexibilidade"],
@@ -66,7 +70,8 @@ const countryExperiences: CountryExperience[] = [
   {
     id: "franca",
     country: "França",
-    flag: "🇫🇷",
+    flag: "fr",
+    code: "",
     duration: "2 meses",
     year: "2024",
     highlights: ["Excelência técnica", "Design thinking", "Luxo e qualidade"],
@@ -80,7 +85,8 @@ const countryExperiences: CountryExperience[] = [
   {
     id: "holanda",
     country: "Holanda",
-    flag: "🇳🇱",
+    flag: "nl",
+    code: "",
     duration: "2 meses",
     year: "2024",
     highlights: ["Inovação sustentável", "Trabalho remoto avançado", "Eficiência máxima"],
@@ -94,7 +100,8 @@ const countryExperiences: CountryExperience[] = [
   {
     id: "alemanha",
     country: "Alemanha",
-    flag: "🇩🇪",
+    flag: "de",
+    code: "",
     duration: "2 meses",
     year: "2024",
     highlights: ["Engenharia de software", "Processos robustos", "Indústria 4.0"],
@@ -108,7 +115,8 @@ const countryExperiences: CountryExperience[] = [
   {
     id: "republica-tcheca",
     country: "República Tcheca",
-    flag: "🇨🇿",
+    flag: "cz",
+    code: "",
     duration: "1.5 meses",
     year: "2024",
     highlights: ["Hub tech emergente", "Custo-benefício", "História rica"],
@@ -122,7 +130,8 @@ const countryExperiences: CountryExperience[] = [
   {
     id: "austria",
     country: "Áustria",
-    flag: "🇦🇹",
+    flag: "at",
+    code: "",
     duration: "1 mês",
     year: "2024",
     highlights: ["Precisão suíça", "Qualidade premium", "Estabilidade em primeiro lugar"],
@@ -136,7 +145,8 @@ const countryExperiences: CountryExperience[] = [
   {
     id: "italia",
     country: "Itália",
-    flag: "🇮🇹",
+    flag: "it",
+    code: "",
     duration: "1.5 meses",
     year: "2024 | 2025",
     highlights: ["Design excepcional", "Criatividade", "Fluxo de trabalho la dolce vita"],
@@ -150,7 +160,8 @@ const countryExperiences: CountryExperience[] = [
   {
     id: "argentina",
     country: "Argentina",
-    flag: "🇦🇷",
+    flag: "ar",
+    code: "",
     duration: "2 meses",
     year: "2025",
     highlights: ["Paixão latina", "Resiliência econômica", "Criatividade cultural"],
@@ -279,16 +290,14 @@ const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
                 />
                 
                 {/* Country label */}
-                <text
-                  x={country.coordinates.x}
-                  y={country.coordinates.y - 5}
-                  fontSize="2"
-                  fill="white"
-                  textAnchor="middle"
-                  className="pointer-events-none text-xs font-medium"
-                >
-                  {country.flag}
-                </text>
+                <image
+                className="rounded-sm"
+                  href={`/folder/${country.flag}.svg`}
+                  x={country.coordinates.x - 5}
+                  y={country.coordinates.y - 13}
+                  width="10"
+                  height="10"
+                />
               </g>
             ))}
           </svg>
@@ -323,7 +332,11 @@ const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
             onClick={() => handleCountryClick(country)}
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className="text-3xl">{country.flag}</div>
+            <img
+                      src={`/folder/${country.flag}.svg`}
+                      alt={country.country}
+                       className="w-5 h-5 object-contain rounded-sm shadow-sm"
+                    />
               <div>
                 <h4 className="font-semibold text-lg">{country.country}</h4>
                 <p className="text-sm text-muted-foreground flex items-center gap-1">
