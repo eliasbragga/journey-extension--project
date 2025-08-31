@@ -332,11 +332,11 @@ const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
             onClick={() => handleCountryClick(country)}
           >
             <div className="flex items-center gap-3 mb-4">
-            <img
-                      src={`/folder/${country.flag}.svg`}
-                      alt={country.country}
-                       className="w-5 h-5 object-contain rounded-sm shadow-sm"
-                    />
+                <img
+                  src={`/folder/${country.flag}.svg`}
+                  alt={country.country}
+                    className="w-6 h-6 object-contain rounded-sm shadow-sm"
+                />
               <div>
                 <h4 className="font-semibold text-lg">{country.country}</h4>
                 <p className="text-sm text-muted-foreground flex items-center gap-1">
@@ -398,7 +398,11 @@ const GlobalJourneySection: React.FC<GlobalJourneySectionProps> = ({
       {selectedCountry && (
         <Card className="p-8 bg-gradient-to-br from-journey-travel/20 to-journey-travel/5 border-journey-travel/30 animate-slide-in-up">
           <div className="flex items-center gap-4 mb-6">
-            <div className="text-6xl">{selectedCountry.flag}</div>
+          <img
+              src={`/folder/${selectedCountry.flag}.svg`}
+              alt={selectedCountry.country}
+                className="w-9 h-9 object-contain rounded-sm shadow-sm"
+            />
             <div>
               <h3 className="text-3xl font-bold">{selectedCountry.country}</h3>
             </div>
